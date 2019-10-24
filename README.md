@@ -21,8 +21,8 @@ make run
 ```
 ## Configure your hosts file
 ```
-<ip of keycloak container>	keycloak
-<ip of keycloak-eid container>	keycloak-eid
+<ip of docker host>	keycloak
+<ip of docker host>	keycloak-eid
 
 ```
 ## Create a user
