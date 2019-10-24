@@ -3,6 +3,15 @@ This repo contains two containers:
 * keycloak which uses the keycloak-eid container as identity provider
 * keycloak-eid which is an identity provider responsible of validating the e-id and returning the ssn number to the keycloak container
 
+# Todo
+* ~~Set up a second Keycloak instance~~
+* ~~The first Keycloak instance will NOT be configured for mutual SSL~~
+* ~~The second Keycloak instance will be configured for mutual SSL and will be an identity provider to the first instance~~
+* ~~The second Keycloak instance will use the certificate's serial number to extract the SSN and place it in a token which is sent to the first instance. ~~
+* ~~The first instance will consider this as a 'registration' of the user, by setting some arbitrary user claim or by adding that user to a group.~~
+
+Reason for two instances: the mutual SSL is set up on server level, and no application configuration can establish that the client certificate prompt is only shown during login (it will be shown when the SSL connection is set up). Moreover, in case the user has no client certificate available (e.g. when the eid is not connected), the browser must be closed and reopened for the mutual SSL to be tried again. 
+
 # Get up and running
 ## Run Keycloak
 ```
@@ -60,14 +69,7 @@ keytool -import -alias keycloak-eid -file keycloak-eid-ssl -keystore keycloak/tr
 
 ```
 
-# Todo
-* Set up a second Keycloak instance
-* The first Keycloak instance will NOT be configured for mutual SSL
-* The second Keycloak instance will be configured for mutual SSL and will be an identity provider to the first instance
-* The second Keycloak instance will use the certificate's serial number to extract the SSN and place it in a token which is sent to the first instance. 
-* The first instance will consider this as a 'registration' of the user, by setting some arbitrary user claim or by adding that user to a group.
 
-Reason for two instances: the mutual SSL is set up on server level, and no application configuration can establish that the client certificate prompt is only shown during login (it will be shown when the SSL connection is set up). Moreover, in case the user has no client certificate available (e.g. when the eid is not connected), the browser must be closed and reopened for the mutual SSL to be tried again. 
 
 # References
 https://www.keycloak.org/docs/6.0/server_admin/#enable-x-509-client-certificate-user-authentication
