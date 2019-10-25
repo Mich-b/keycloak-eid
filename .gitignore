@@ -1,4 +1,2 @@
 hsperfdata_jboss/
 *.crt
-standalone.xml
-*.jks
