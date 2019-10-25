@@ -26,10 +26,10 @@ make run
 
 ```
 ## Create a user
-Browse to https://keycloak-eid:8444/auth/admin/master/console/#/realms/EIDTEST/users and create a user with your SSN number (e.g. 78451278945). 
+Browse to https://keycloak-eid:8444/auth/admin/master/console/#/realms/EIDTEST/users, cancel the client certificate authentication for now, login using admin-admin, and create a user with your SSN number (e.g. 78451278945). 
 
 ## Authenticate as that user from another Keycloak instance brokered to the keycloak-eid instance
-User your e-id to authenticate using mutual TLS by reopening your browser or by simply opening an incognito tab and browse to https://keycloak:8443/auth/realms/EIDTEST-NOSSL/account
+User your e-id to authenticate using mutual TLS by opening an incognito tab and browsing to https://keycloak:8443/auth/realms/EIDTEST-NOSSL/account
 
 => you are now able to complete the user registration on the keycloak instance. 
 
@@ -68,8 +68,6 @@ Keycloak needs to call back to keycloak-eid to exchange the code for tokens, so 
 keytool -import -alias keycloak-eid -file keycloak-eid-ssl -keystore keycloak/truststore.jks
 
 ```
-
-
 
 # References
 https://www.keycloak.org/docs/6.0/server_admin/#enable-x-509-client-certificate-user-authentication
